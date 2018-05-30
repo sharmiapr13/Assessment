@@ -15,13 +15,14 @@ See Backend Technical Assessment document for detailed requirements.
 
 Assumptions
 -----------
-Bidding amount entered by buyer is always greater than current lowest Bidding amount
-User is common entity and can be both buyer and seller
-Username is the unique identifier for Buyer/Seller
-Project Id is automatically incremented
-Amount lesser than or equal to 0 is not considered valid bidding amount
-Project is considered duplicate if the same user creates Project with same name while  the existing project is active
-Auto Bid once created by a user, cannot be deleted but can be updated
+- Bidding amount entered by buyer is always greater than current lowest Bidding amount
+- User is common entity and can be both buyer and seller
+- Username is the unique identifier for Buyer/Seller
+- Project Id is automatically incremented
+- Amount lesser than or equal to 0 is not considered valid bidding amount
+- Project is considered duplicate if the same user creates Project with same name while  the existing project is active
+- Auto Bid once created by a user, cannot be deleted but can be updated
+
 Auto Bid Logic:
 ---------------
 - Maintain the lowest 2 auto bid amount
@@ -32,8 +33,7 @@ Auto Bid Logic:
 Notes:
 -------
 - When Bidding is added, UI will send the /bids and /autobid
-- Considered cassandra for maintaining the persistent data for history of bidding
-but concentrated more on the specific requirements and so, dint maintain all the history of bidding
+- Considered cassandra for maintaining the persistent data for history of bidding but concentrated more on the specific requirements and so, dint maintain all the history of bidding
 - Maintained the lowest Bidding amount and corresponding Buyer info
 - Maintained the lowest Auto Bid amount and the corresponding Buyer info
 - Maintain seperate RequestMapping for autobid to avoid any impact due to auto bid implementation
@@ -57,78 +57,88 @@ Few Test Cases manually tested:
 
 Submission:
 ------------
-Exercise Difficulty: Moderate
-Feel about the exercise: 10
-Feel about coding an exercise: 10
-Change in the Exercise: Some utility to run the Basic Test cases and option to add custom test cases
+- Exercise Difficulty: Moderate
+- Feel about the exercise: 10
+- Feel about coding an exercise: 10
+- Change in the Exercise: Some utility to run the Basic Test cases and option to add custom test cases to record the testing results
 
-Process is very impressive as it is more realistic way of evaluating.
+- Process is very impressive as it is more realistic way of evaluating.
 
 Test Execution:
 ---------------
-Project: localhost:8080/marketplace/projects
-Method: POST, GET, PUT, DELETE
+Project: 
+	localhost:8080/marketplace/projects
+Method: 
+	POST, GET, PUT, DELETE
 Sample Body: 
-{
-	"projName": "test2",
-	"projDesc": "testDesc2",
-	"sellerId": "testuser2",
-	"maxBudget": 150,
-	"maxBidDateTime":"2018-05-30T10:00:00.000+0000"
-}
+	{
+		"projName": "test2",
+		"projDesc": "testDesc2",
+		"sellerId": "testuser2",
+		"maxBudget": 150,
+		"maxBidDateTime":"2018-05-30T10:00:00.000+0000"
+	}
 Header: 
-Content-Type:application/json
+	Content-Type:application/json
 
-GET/UPDATE/DELETE Request: localhost:8080/marketplace/projects/1
+GET/UPDATE/DELETE Request:
+	localhost:8080/marketplace/projects/1
 
 Buyer/Seller:
-localhost:8080/marketplace/sellers
-localhost:8080/marketplace/buyers
-Method: POST, PUT, GET, UPDATE
+	localhost:8080/marketplace/sellers
+	localhost:8080/marketplace/buyers
+Method: 
+	POST, PUT, GET, UPDATE
 Sample Body:
-{
-    "userName": "dsundar",
-    "firstName": "Devaki",
-    "lastName": "Sundaramurthy",
-    "email": "test123@gmail.com",
-    "phone": "111-222-3333"
-}
+	{
+	    "userName": "dsundar",
+	    "firstName": "Devaki",
+	    "lastName": "Sundaramurthy",
+	    "email": "test123@gmail.com",
+	    "phone": "111-222-3333"
+	}
 Header:
-Content-Type:application/json
+	Content-Type:application/json
 
-Bid:
-localhost:8080/marketplace/bids
-Method: POST
+bids:
+	localhost:8080/marketplace/bids
+Method: 
+	POST
 Sample Body:
-{
-	"projId": 3,
-	"userName": "dsundar",
-	"bidAmt": "90"
-}
+	{
+		"projId": 3,
+		"userName": "test",
+		"bidAmt": "90"
+	}
 Header:
-Content-Type:application/json
+	Content-Type:application/json
 
 Auto Bid:
-localhost:8080/marketplace/autobid
-Method: POST
+	localhost:8080/marketplace/autobid
+Method: 
+	POST
 Sample Body:
-{
-	"projId": 2,
-	"userName": "test",
-	"lowestBidAmt": "80",
-	"reduceRange": 5,
-	"autoBidFlag": "true"
-}
+	{
+		"projId": 2,
+		"userName": "test",
+		"lowestBidAmt": "80",
+		"reduceRange": 5,
+		"autoBidFlag": "true"
+	}
 Header:
-Content-Type:application/json
+	Content-Type:application/json
 
-Import the project to IntelliJ IDEA. Compile the project.
-Run the below command in the terminal to start the application
+Project Setup:
+--------------
+- Import the project to IntelliJ IDEA. Compile the project.
+- Run the below command in the terminal to start the application
 
-Home path: mvn spring-boot:run
-            or
-target folder: java -jar backend-tech-assessment-standard-0.0.1-SNAPSHOT.jar
+From Home path: 
+	mvn spring-boot:run
+            OR
+From target folder: 
+	java -jar backend-tech-assessment-standard-0.0.1-SNAPSHOT.jar
 
-Hit the URL once the server is started.
+- Hit the URL once the server is started.
 
 
