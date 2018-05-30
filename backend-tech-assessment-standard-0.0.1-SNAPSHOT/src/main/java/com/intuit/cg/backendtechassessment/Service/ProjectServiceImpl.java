@@ -171,7 +171,12 @@ public class ProjectServiceImpl implements ProjectService {
             }
         }
         else {
-            lowestAutoBid = project.getMaxBudget() - autoBid.getReduceRange();
+            if (project.getLowestBidAmt() > 0) {
+                lowestAutoBid = project.getLowestBidAmt() - autoBid.getReduceRange();
+            }
+            else {
+                lowestAutoBid = project.getMaxBudget() - autoBid.getReduceRange();
+            }
         }
         project.setLowestAutoBidAmt(lowestAutoBid);
         project.setAutoBidUser(autoBid.getUserName());
