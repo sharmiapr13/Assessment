@@ -36,7 +36,7 @@ Notes:
 - Considered cassandra for maintaining the persistent data for history of bidding but concentrated more on the specific requirements and so, dint maintain all the history of bidding
 - Maintained the lowest Bidding amount and corresponding Buyer info
 - Maintained the lowest Auto Bid amount and the corresponding Buyer info
-- Maintain seperate RequestMapping for autobid to avoid any impact due to auto bid implementation
+- Maintain seperate RequestMapping for autobid and not overwriting the lowestBidAmount based on autoBid to avoid any impact due to auto bid implementation. New LowestAutoBidAmt element is introduced to provide the amount based on lowest bid amt and auto bid feature
 - Covered few flavours of Junits
 
 Few Test Cases manually tested:
